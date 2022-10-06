@@ -1,6 +1,6 @@
 import pkg_resources
 from Acquisition import aq_get
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.interfaces import IVocabularyFactory
@@ -26,8 +26,9 @@ else:
     from plone.dexterity.interfaces import IDexterityFTI
 
 
+@implementer(IVocabularyFactory)
 class baseVocabulary(object):
-    implements(IVocabularyFactory)
+
     terms = []
 
     def __call__(self, context):
@@ -62,9 +63,9 @@ class mapviewletmanagersVocab(baseVocabulary):
         return terms
 
 
+@implementer(IVocabularyFactory)
 class ATTypesVocabulary(object):
-    implements(IVocabularyFactory)
-
+    
     def __call__(self, context):
         site = getSite()
         ttool = getToolByName(site, 'portal_types', None)

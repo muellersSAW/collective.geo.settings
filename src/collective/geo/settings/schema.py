@@ -1,4 +1,4 @@
-from zope.interface import implements
+from zope.interface import implementer
 from zope import schema
 from zope.component import adapts
 from z3c.form.interfaces import IWidget
@@ -9,12 +9,11 @@ class ICoordinate(schema.interfaces.IDecimal):
     '''helper to register custom data converter for coordinate.
     '''
 
-
+@implementer(ICoordinate)
 class Coordinate(schema.Decimal):
     '''a coordinate field with predefined precision.
     '''
-    implements(ICoordinate)
-
+    
 
 class CoordinateDataConverter(converter.DecimalDataConverter):
     """
@@ -60,7 +59,7 @@ class CoordinateDataConverter(converter.DecimalDataConverter):
         """See interfaces.IDataConverter"""
         if value is self.field.missing_value:
             return u''
-        return unicode(value)
+        return str(value)
 
     def toFieldValue(self, value):
         """See interfaces.IDataConverter"""

@@ -1,6 +1,6 @@
 from pkg_resources import get_distribution
 from zope.i18nmessageid import MessageFactory
-import config
+from . import config
 
 
 GeoSettingsMessageFactory = MessageFactory(config.PROJECTNAME)

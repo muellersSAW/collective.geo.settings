@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from zope.interface import implements
+from zope.interface import implementer
 from zope.publisher.browser import TestRequest as baseRequest
 from z3c.form.interfaces import IFormLayer
 
@@ -25,5 +25,6 @@ CGEO_SETTINGS_FUNCTIONAL = FunctionalTesting(
     name="CGEO_SETTINGS_FUNCTIONAL")
 
 
+@implementer(IFormLayer)
 class TestRequest(baseRequest):
-    implements(IFormLayer)
+    pass
